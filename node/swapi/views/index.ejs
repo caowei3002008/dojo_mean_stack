@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Express with AJAX</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style type="text/css">
+      .button{
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Star Wars WiKi</h1>
+    <h2>What would you like to know more about?</h2>
+    <div >
+      <form method="get" action="/people" class="button">
+        <button>People</button>
+      </form>
+      <form method="get" action="/planets" class="button">
+        <button>Planets</button>
+      </form>
+    </div>
+
+    <% if(typeof data != "undefined"){%>
+    <% for(var name of data.results) {%>
+    <p><%= name.name %></p>
+    <%}%>
+    <% if(data.previous != null) {%>
+    <form method="post" action="/pre10" class="button" name="urlPre">
+      <input type="hidden" name="preTen" value=<%=data.previous%> >
+      <button>Previously 10</button>
+    </form>
+    <%}%>
+    <% if(data.next != null) {%>
+    <form method="post" action="/next10" class="button">
+      <input type="hidden" name="nextTen" value=<%=data.next%> >
+      <button>Next 10</button>
+    </form>
+    <%}%>
+    <form method="get" action="/getAllPlanets" class="button">
+      <button>Get All <%=data.count%> <%=mark %>!</button>
+    </form>
+
+    <%}%>
+
+  <% if(typeof allData != "undefined"){%>
+  <% for(var name of allData) {%>
+  <p><%= name.name%></p>
+  <%}%>
+
+    <%}%>
+
+
+
+  </body>
+</html>

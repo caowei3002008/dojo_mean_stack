@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hunting Github</title>
+	<script
+ 	src="https://code.jquery.com/jquery-3.3.1.min.js"
+  	ntegrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  	crossorigin="anonymous"></script>
+
+  	<script type="text/javascript">
+  		function getName(){
+  			var name =  $("#name").val();
+  			var html = "https://api.github.com/users/" + name;
+  			$.get(html,displayName)
+  			function displayName(data){
+  				console.log(data.name);
+  			}
+  		}
+  		
+	</script>
+</head>
+<body>
+
+	<input type="text" id="name"> <button onclick="getName()">GO</button>
+
+
+
+</body>
+</html>
+

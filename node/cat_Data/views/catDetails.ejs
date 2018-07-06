@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cat Details</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h2>Details Page for Cat1</h2>
+<h3>Favorite food: <%= catData.Favorite_food%></h3>
+<h3>Age: <%= catData.Age%></h3>
+<h3>Sleeping spots:<br>
+    <% for(var x in catData.Sleeping_spots) { %>
+    <%= catData.Sleeping_spots[x] %><br>
+    <%}%>
+</h3>
+</body>
+</html>

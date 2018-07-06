@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket  = io.connect();
+
+
+
+            $('#surveyForm').submit(function(e){
+                e.preventDefault();
+                socket.emit("surveyInfo",{
+                    name:$('#name').val(),
+                    location:$('#location').val(),
+                    language:$('#language').val(),
+                    comment:$('#comment').val()
+                });
+            });
+
+            socket.on('server_response1',function(infoSurvey){
+                $('#message').html("You emitted the following information to the server:"+ JSON.stringify(infoSurvey.response1));
+                $('#luckyNumber').html("Your lucky number emitted by the server is: "+ infoSurvey.response2);
+            });
+        })
+    </script>
+  </head>
+  <body>
+  <div id="message"></div>
+  <div id="luckyNumber"></div>
+    <form action="/results" method="post" id="surveyForm">
+      <label>Your Name: <input type="text" name="name" id="name"> </label><br>
+      <label for="location" >Dojo Location:
+        <select name="location" id="location">
+          <option value="Mountain View">Mountain View</option>
+          <option value="Burbank">Burbank</option>
+          <option value="Seattle" >Seattle</option>
+          <option value="Dallas">Dallas</option>
+        </select>
+      </label><br>
+      <label for="language" >Favorite Language:
+        <select name="language" id="language">
+          <option value="JavaScript">JavaScript</option>
+          <option value="Java"  >Java</option>
+          <option value="Pyhton" >Pyhton</option>
+          <option value="C#" >C#</option>
+        </select>
+      </label><br>
+
+      <label>Comment(option):<br>
+      <textarea name="comment" rows="4" cols="50"></textarea>
+      </label><br>
+      <button>Submit</button>
+
+    </form>
+  </body>
+</html>

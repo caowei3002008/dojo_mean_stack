@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia</title>
+	<script
+ 	src="https://code.jquery.com/jquery-3.3.1.min.js"
+  	ntegrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  	crossorigin="anonymous"></script>
+  	<script type="text/javascript">
+  		var data;
+  		var count = 0;
+
+  		function getQuestion(){
+  			$.get("https://opentdb.com/api.php?amount=10&type=multiple",storeQuestion);
+  			count = 0;
+  			function storeQuestion(questions){
+  				data = questions;
+  				count = 0;
+  				document.getElementById("emptyQuestions").innerHTML = "";
+
+  			}
+  		}
+
+  		function showQuestion(){
+  			console.log(data);
+  			if(count<data.results.length){
+  				document.getElementById("question").innerHTML = data.results[count].question;
+  				document.getElementById("o1").innerHTML = data.results[count].incorrect_answers[0];
+  				document.getElementById("o2").innerHTML = data.results[count].incorrect_answers[1];
+  				document.getElementById("o3").innerHTML = data.results[count].incorrect_answers[2];
+  				document.getElementById("o4").innerHTML = data.results[count].correct_answer;
+  				count++;
+  			}else{
+  				document.getElementById("emptyQuestions").innerHTML = "<h1>This is the last question!!!</h1>";
+  			}
+  			
+  		}
+
+
+  	</script>
+</head>
+<body>
+	<h1>Trivia Night</h1>
+	<button onclick="getQuestion()">Get Question</button>
+	<button onclick="showQuestion()">Show Question</button>
+	<h3 id="allQuestion"></h3>
+	<div id="q">
+		<p id = "question"></p>
+		<ul>
+			<li id="o1"></li>
+			<li id="o2"></li>
+			<li id="o3"></li>
+			<li id="o4"></li>
+		</ul>
+		<p id="emptyQuestions"></p>
+	</div>
+</body>
+</html>
+
+

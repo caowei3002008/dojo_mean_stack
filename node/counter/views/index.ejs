@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      <h1 style="text-align: center">Counter</h1>
+      <h2 style="text-align: center"><%= counter%> times</h2>
+
+      <form action="/add1" method="post">
+        <button>Add one time</button>
+      </form><br>
+
+      <form action="/add2" method="post">
+        <button>Add two time</button>
+      </form><br>
+
+      <form action="/clear" method="post">
+        <button>Clear</button>
+      </form>
+  </body>
+</html>

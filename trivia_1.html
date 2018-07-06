@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" ntegrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+
+
+  	<script type="text/javascript">
+  		var data1;
+  		var data2;
+  		var data3;
+  		var box1 = "box1_";
+  		var box2 = "box2_";
+  		var box3 = "box3_";
+  		var html = "";
+
+  		function getQuestion(){
+  			$.get("https://opentdb.com/api.php?amount=3&category=10&type=multiple",entertainmentQuestion);
+
+  			$.get("https://opentdb.com/api.php?amount=3&category=9&type=multiple",generalQuestion);
+
+  			$.get("https://opentdb.com/api.php?amount=3&category=18&type=multiple", sicenceQuestion);
+
+
+
+  			function entertainmentQuestion(questions1){
+  				data1 = questions1;
+
+  				for(let i = 1 ; i<4; i++){
+  					box1 += i;
+  					html = "<p>"+data1.results[i-1].question+"</p>";
+  					html +="<input type = 'radio'>";
+  					html += data1.results[i-1].incorrect_answers[0];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data1.results[i-1].incorrect_answers[1];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data1.results[i-1].incorrect_answers[2];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data1.results[i-1].correct_answer;
+  					html +="<br>";
+  					document.getElementById(box1).innerHTML = html;
+  					html = "";
+  					box1 = "box1_";
+  				}
+
+  			}
+  			  	function generalQuestion(questions2){
+  				data2 = questions2;
+
+  				for(let i = 1 ; i<4; i++){
+  					box2 += i;
+  					html = "<p>"+data2.results[i-1].question+"</p>";
+  					html +="<input type = 'radio'>";
+  					html += data2.results[i-1].incorrect_answers[0];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data2.results[i-1].incorrect_answers[1];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data2.results[i-1].incorrect_answers[2];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data2.results[i-1].correct_answer;
+  					html +="<br>";
+  					document.getElementById(box2).innerHTML = html;
+  					html = "";
+  					box2 = "box2_";
+  				}
+
+  			}
+
+  			function sicenceQuestion(questions3){
+  				data3 = questions3;
+
+  				for(let i = 1 ; i<4; i++){
+  					box3 += i;
+  					html = "<p>"+data3.results[i-1].question+"</p>";
+  					html +="<input type = 'radio'>";
+  					html += data3.results[i-1].incorrect_answers[0];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data3.results[i-1].incorrect_answers[1];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data3.results[i-1].incorrect_answers[2];
+  					html +="<br>";
+  					html +="<input type = 'radio'>";
+  					html += data3.results[i-1].correct_answer;
+  					html +="<br>";
+  					document.getElementById(box3).innerHTML = html;
+  					html = "";
+  					box3 = "box3_";
+  				}
+
+  			}
+  		
+  		}
+  		
+  		function flip1(){
+  			$("#flipClass").flip();
+  		}
+  	
+
+
+  	</script>
+
+  	<style type="text/css">
+  		.box{
+  			width: 350px;
+  			height: 700px;
+		border: 1px solid black;
+  			margin-left: 10px;
+  			float: left;
+  		}
+  		.smallBox{
+  			width: 300px;
+  			height: 180px;
+  			display: block;
+  			border: 1px solid black;
+  			margin-left: 25px;
+  			margin-top: 10px;
+  		}
+  	</style>
+</head>
+<body>
+	<button onclick="getQuestion()">GO</button>
+	<h1 style="text-align: center;">Trivia Night</h1>
+	<div id="box1" class="box">
+		<h3 style="text-align: center;">General Knowledge</h3>
+
+		<div id="flipClass" onclick="flip1()">
+<!-- 			<div class="smallBox"><h2>100</h2></div>
+ -->			<div id="box1_1" class="smallBox"></div>
+		</div>
+		
+		<div id="box1_2" class="smallBox"></div>
+		<div id="box1_3" class="smallBox"></div>
+	</div>
+	<div id="box2" class="box">
+		<h3  style="text-align: center;">Entertainment</h3>
+		<div id="box2_1" class="smallBox"></div>
+		<div id="box2_2" class="smallBox"></div>
+		<div id="box2_3" class="smallBox"></div>
+	</div>
+	<div id="box3" class="box">
+		<h3  style="text-align: center;">Science</h3>
+		<div id="box3_1" class="smallBox"></div>
+		<div id="box3_2" class="smallBox"></div>
+		<div id="box3_3" class="smallBox"></div>
+	</div>
+</body>
+</html>
