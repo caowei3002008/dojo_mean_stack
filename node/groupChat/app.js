@@ -39,5 +39,22 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+var chatRoom = io.of('/toChatRoom');
+// chatRoom.on('connection', function(socket){
+//
+// });
+var username;
+io.sockets.on("connection", function(socket){
+    console.log("Client/socket is connected!");
+    console.log(`Client/socket id is ${socket.id}`);
+
+    socket.on("sendUserName", function(name){
+        username = name;
+      console.log(name);
+      chatRoom.emit("getUserName", name);
+    })
+
+
+});
 
 module.exports = app;

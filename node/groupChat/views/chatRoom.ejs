@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chat Room</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function(){
+            var socket = io('/toChatRoom');
+            var name;
+
+            socket.on("getUserName", function(name){
+
+                this.name = name;
+
+                $('#name').html(name);
+            })
+
+
+
+
+
+
+
+
+
+        })
+
+    </script>
+</head>
+
+<body>
+
+<h1 id="name"></h1>
+
+</body>
+
+</html>

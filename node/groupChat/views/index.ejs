@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Char Room</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+      $(document).ready(function(){
+          var socket = io.connect();
+
+          $('#userEnter').submit(function(){
+              socket.emit("sendUserName", $('#name').val());
+          })
+
+
+
+
+
+
+      })
+
+    </script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <form method="post" action="/toChatRoom" id="userEnter">
+      <label>Your Name: <br><input name="name" id="name" type="text"> </label><br>
+      <button>OK</button>
+    </form>
   </body>
 </html>
